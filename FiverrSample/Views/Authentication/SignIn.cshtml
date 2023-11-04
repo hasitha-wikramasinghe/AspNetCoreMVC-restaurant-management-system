@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Fiverr_Sample.Authentication.Models.SignInModel
+
+@{
     Layout = null;
 }
 
@@ -51,7 +53,7 @@
 
                                     <div class="col-md-12">
                                         <label class="form-label">Email</label>
-                                        <input type="email" name="email" id="txtEmail" class="form-control" @* asp-for="Email" *@ placeholder="Email">
+                                        <input type="email" name="email" id="txtEmail" class="form-control" asp-for="Email" placeholder="Email">
                                         <span id="lblEmailError" class="text-danger" style="display:none;">This field is mandotary.</span>
                                         <div id="lblEmailError" class="text-danger col-md-12" style="display:none;">
                                             Please Enter Email
@@ -59,7 +61,7 @@
                                     </div>
                                     <div class="col-md-12 mt-1">
                                         <label class="form-label">Password</label>
-                                        <input type="password" name="password" id="txtPassword" class="form-control" @* asp-for="Password" *@ placeholder="Password">
+                                        <input type="password" name="password" id="txtPassword" class="form-control" asp-for="Password" placeholder="Password">
                                         <span id="lblPasswordError" class="text-danger" style="display:none;">This field is mandotary.</span>
                                         <div id="lblPasswordError" class="text-danger col-md-12" style="display:none;">
                                             Please Enter Password
@@ -73,13 +75,12 @@
                                     <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
                                     </div>*@
                                     <div class="text-center">
-                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign In</button>
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" asp-action="SignIn" asp-controller="Authentication">Sign In</button>
                                         @*<button type="button" id="btnCompanyLogin" class="btn bg-gradient-primary w-100 my-4 mb-2">Company Login</button>*@
                                     </div>
                                 </form>
                             </div>
-                            <form id="formLogin" role="form" class="text-start" asp-action="Login" asp-controller="Auth">
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
