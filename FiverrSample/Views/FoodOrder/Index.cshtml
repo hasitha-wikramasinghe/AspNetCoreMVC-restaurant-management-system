@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
+}
+
+<br />
+
+<link rel="stylesheet" href="~/css/styles.css" type="text/css" />
+
+<div id="placeHolder"></div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="card-title">
+                    Content should goes here
+                </h3>
+            </div>
+
+            <div class="col-md-6" style="float: right;">
+                <div class="card-tools">
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-block btn-primary" href="#" align="right" style="width:150px;"><i class="fa fa-user-plus" aria-hidden="true"></i> User</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+
+
+    </div>
+
+
+    @* <div class="card-body w-auto">
+        <div id="alertContainer" class="col-md-12">
+            @Html.Raw(TempData["Alert"])
+        </div>
+
+        <div id="gridContainer">
+        </div>
+    </div> *@
+
+</div>
+
+<style>
+    div.container {
+        max-width: 1200px
+    }
+
+    .dx-button {
+        height: 20px;
+    }
+
+    /*.fa {
+            height: 20px;
+            margin-top: -5px;
+        }*/
+
+    .fa-edit {
+        height: 20px;
+        width: 5px;
+        margin-top: -7px;
+    }
+</style>
+
+
+@section scripts{
+    
+}
+
