@@ -1,4 +1,5 @@
 ﻿using Fiverr_Sample.Authentication.Models;
+using Fiverr_Sample.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
