@@ -1,4 +1,4 @@
-﻿@model Fiverr_Sample.Models.ApplicationUser
+﻿@model Fiverr_Sample.Authentication.Models.ApplicationUser
 @{
     ViewData["Title"] = "Users";
     Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
@@ -10,6 +10,31 @@
 
 <div id="placeHolder"></div>
 <div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="card-title">
+                    Create Your @ViewData["Title"]
+                </h3>
+            </div>
+
+            <div class="col-md-6" style="float: right;">
+                <div class="card-tools">
+        <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa fa-user-plus" aria-hidden="true"></i> User</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+    </div>
+
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <h3 class="card-title">
@@ -50,15 +75,17 @@
                                 <span id="lblLastNameInvalidError" class="text-danger" style="display:none;">Please enter valid Last Name.</span>
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-md-4">
-                            <button type="submit" class="btn bg-gradient-primary" asp-action="Create" asp-controller="User">Create</button>
+                                <button type="submit" class="btn btn-primary" asp-action="Create" asp-controller="User">Create</button>
                             </div>
                         </div>
                     </form>
                 </h3>
             </div>
         </div>
+    </div>
 
         <br>
 

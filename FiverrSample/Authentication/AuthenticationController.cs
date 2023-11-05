@@ -47,7 +47,7 @@ namespace Fiverr_Sample.Authentication
 
             if (signinResult.Succeeded)
             {
-                return RedirectToAction("Index", "FoodOrder");
+                return RedirectToAction("Index", "User");
             }
 
             return RedirectToAction("SignIn");
