@@ -1,4 +1,5 @@
-using Fiverr_Sample.Models;
+using Fiverr_Sample.Authentication.Models;
+using Fiverr_Sample.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
