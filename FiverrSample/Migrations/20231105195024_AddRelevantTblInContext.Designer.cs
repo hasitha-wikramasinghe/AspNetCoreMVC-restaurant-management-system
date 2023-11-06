@@ -4,6 +4,7 @@ using Fiverr_Sample.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiverr_Sample.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231105195024_AddRelevantTblInContext")]
+    partial class AddRelevantTblInContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,37 +124,6 @@ namespace Fiverr_Sample.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NIC")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrdersCompleted")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customer", (string)null);
-                });
-
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -161,37 +132,20 @@ namespace Fiverr_Sample.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("FoodOrderLineItemOrderId")
                         .HasColumnType("int");
 
                     b.Property<int?>("FoodOrderLineItemProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
                     b.HasIndex("FoodOrderLineItemOrderId", "FoodOrderLineItemProductId");
 
-                    b.ToTable("FoodOrders", (string)null);
+                    b.ToTable("FoodOrders");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", b =>
@@ -202,12 +156,6 @@ namespace Fiverr_Sample.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<int?>("FoodOrderStatusListId")
                         .HasColumnType("int");
 
@@ -216,12 +164,6 @@ namespace Fiverr_Sample.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
@@ -235,7 +177,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("FoodOrderLineItems", (string)null);
+                    b.ToTable("FoodOrderLineItems");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatusList", b =>
@@ -246,25 +188,13 @@ namespace Fiverr_Sample.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("StatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodOrderStatusLists", (string)null);
+                    b.ToTable("FoodOrderStatusLists");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Product", b =>
@@ -275,18 +205,6 @@ namespace Fiverr_Sample.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -296,7 +214,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -438,15 +356,9 @@ namespace Fiverr_Sample.Migrations
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
                 {
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
                     b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", "FoodOrderLineItem")
                         .WithMany()
                         .HasForeignKey("FoodOrderLineItemOrderId", "FoodOrderLineItemProductId");
-
-                    b.Navigation("Customer");
 
                     b.Navigation("FoodOrderLineItem");
                 });

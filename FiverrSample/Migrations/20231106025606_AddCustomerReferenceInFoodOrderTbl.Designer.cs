@@ -4,6 +4,7 @@ using Fiverr_Sample.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiverr_Sample.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231106025606_AddCustomerReferenceInFoodOrderTbl")]
+    partial class AddCustomerReferenceInFoodOrderTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,7 +152,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
@@ -191,7 +193,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasIndex("FoodOrderLineItemOrderId", "FoodOrderLineItemProductId");
 
-                    b.ToTable("FoodOrders", (string)null);
+                    b.ToTable("FoodOrders");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", b =>
@@ -235,7 +237,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("FoodOrderLineItems", (string)null);
+                    b.ToTable("FoodOrderLineItems");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatusList", b =>
@@ -264,7 +266,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodOrderStatusLists", (string)null);
+                    b.ToTable("FoodOrderStatusLists");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Product", b =>
@@ -296,7 +298,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

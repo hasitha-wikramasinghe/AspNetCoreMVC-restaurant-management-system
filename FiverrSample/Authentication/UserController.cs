@@ -24,7 +24,10 @@ namespace Fiverr_Sample.Authentication
         }
         public async Task<IActionResult> Index()
         {
-            var users = await _context.ApplicationUsers.Where(user => user.IsDeleted == false || user.IsDeleted == null).ToListAsync(); 
+            var users = await _context.ApplicationUsers
+                .Where(user => user.IsDeleted == false || user.IsDeleted == null)
+                .OrderBy(user => user.FirstName)
+                .ToListAsync(); 
             return View(users);
         }
 

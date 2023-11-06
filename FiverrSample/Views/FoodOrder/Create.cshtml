@@ -1,0 +1,122 @@
+﻿@model Fiverr_Sample.FoodOrdering.Models.FoodOrder
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
+}
+
+<br />
+
+<link rel="stylesheet" href="~/css/styles.css" type="text/css" />
+
+<div id="placeHolder"></div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="card-title">
+                    Create Your @ViewData["Title"]
+                </h3>
+            </div>
+
+            <div class="col-md-6" style="float: right;">
+                <div class="card-tools">
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa fa-user-plus" aria-hidden="true"></i> User</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="card-title">
+                    <form id="formNewUser" asp-action="Create" asp-controller="User" method="post">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label asp-for="Id" class="control-label"></label>
+                                <input id="txtOrderId" disabled asp-for="Id" type="text" class="form-control" placeholder="Order Id" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Customer.Name" class="control-label"></label>
+                                <input id="txtLastName" asp-for="Customer.Name" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Customer.Email" class="control-label"></label>
+                                <input id="txtEmail" asp-for="Customer.Email" type="text" class="form-control" placeholder="Email" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label asp-for="Customer.PhoneNumber" class="control-label"></label>
+                                <input id="txtOrderId" asp-for="Customer.PhoneNumber" type="text" class="form-control" placeholder="First Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CreatedBy" class="control-label"></label>
+                                <input id="txtCreatedBy" disabled asp-for="CreatedBy" type="text" class="form-control" placeholder="First Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CreatedOn" class="control-label"></label>
+                                <input id="txtCreatedOn" disabled asp-for="CreatedOn" type="text" class="form-control" placeholder="Last Name" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary" asp-action="Create" asp-controller="FoodOrder">Create</button>
+                            </div>
+                        </div>
+                    </form>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+    @* <div class="card-body w-auto">
+    <div id="alertContainer" class="col-md-12">
+    @Html.Raw(TempData["Alert"])
+    </div>
+
+    <div id="gridContainer">
+    </div>
+    </div> *@
+
+</div>
+
+<style>
+    div.container {
+        max-width: 1200px
+    }
+
+    .dx-button {
+        height: 20px;
+    }
+
+    /*.fa {
+                    height: 20px;
+                    margin-top: -5px;
+                }*/
+
+    .fa-edit {
+        height: 20px;
+        width: 5px;
+        margin-top: -7px;
+    }
+</style>
+
+
+@section scripts{
+
+}
+
