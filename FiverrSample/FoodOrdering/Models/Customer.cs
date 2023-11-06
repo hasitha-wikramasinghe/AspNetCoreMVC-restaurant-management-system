@@ -8,13 +8,13 @@ namespace Fiverr_Sample.FoodOrdering.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Display(Name = "Name")]
+        [Display(Name = "Customer Name")]
         public string Name { get; set; } = string.Empty;
-        [Display(Name = "Email")]
+        [Display(Name = "Customer Email")]
         public string Email { get; set; } = string.Empty;
-        [Display(Name = "NIC")]
+        [Display(Name = "Customer NIC")]
         public string NIC { get; set; } = string.Empty;
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Customer Phone Number")]
         public int PhoneNumber { get; set; }
         public int OrdersCompleted { get; set; }
     }
