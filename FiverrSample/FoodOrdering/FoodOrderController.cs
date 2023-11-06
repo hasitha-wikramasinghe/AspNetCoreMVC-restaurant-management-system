@@ -26,12 +26,15 @@ namespace Fiverr_Sample.FoodOrdering
         public async Task<IActionResult> Create()
         {
             FoodOrder foodOrder = new FoodOrder();
+            
+            foodOrder.CustomerId = null;
+            foodOrder.FoodOrderStatusId = (int)FoodOrderStatusEnum.Created;
+
             foodOrder.CreatedOn = DateTime.UtcNow;
             if (User.Identity.IsAuthenticated)
             {
                 foodOrder.CreatedBy = User.FindFirstValue(ClaimTypes.NameIdentifier);
             }
-            foodOrder.CustomerId = null;
 
             _dbContext.FoodOrders.Add(foodOrder);
             await _dbContext.SaveChangesAsync();

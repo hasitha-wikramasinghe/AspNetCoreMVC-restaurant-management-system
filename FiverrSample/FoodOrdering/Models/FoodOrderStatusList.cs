@@ -5,10 +5,11 @@ namespace Fiverr_Sample.FoodOrdering.Models
 {
     public class FoodOrderStatusList
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string StatusName { get; set; } = string.Empty;
+        public string StatusDescription { get; set; } = string.Empty;
+        public ICollection<FoodOrder>? FoodOrders { get; set; }
+
 
         [Display(Name = "Created By")]
         public string? CreatedBy { get; set; } = string.Empty;

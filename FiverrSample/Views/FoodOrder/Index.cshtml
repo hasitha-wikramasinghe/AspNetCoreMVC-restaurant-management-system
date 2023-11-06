@@ -40,7 +40,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Order Id</th>
-                    <th>Line Item Id</th>
+                    <th>Status</th>
                     <th>Total Price</th>
                     <th>Actions</th>
                 </tr>
@@ -50,7 +50,7 @@
                 {
                     <tr>
                         <td>@foodOrder.Id</td>
-                        <td>@foodOrder.FoodOrderLineItem.Id</td>
+                        <td>@foodOrder.FoodOrderStatusList?.StatusName</td>
                         <td>@foodOrder.TotalPrice</td>
                         <td>
                             <a class="btn btn-info" href="@Url.Action("Update", new {Id = foodOrder.Id})"><i class="fa-solid fa-pen fa-fw"></i></a>

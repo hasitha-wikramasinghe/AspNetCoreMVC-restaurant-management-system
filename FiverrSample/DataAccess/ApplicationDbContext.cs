@@ -13,7 +13,7 @@ namespace Fiverr_Sample.DataAccess
             base.OnModelCreating(builder);
 
             builder.Entity<FoodOrderLineItem>()
-        .HasKey(op => new { op.OrderId, op.ProductId });
+            .HasKey(op => new { op.OrderId, op.ProductId });
 
             builder.Entity<FoodOrderLineItem>()
                 .HasOne(op => op.Order)
@@ -36,6 +36,7 @@ namespace Fiverr_Sample.DataAccess
         public DbSet<FoodOrderLineItem> FoodOrderLineItems { get; set; }
         public DbSet<FoodOrderStatusList> FoodOrderStatusLists { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
 
     }

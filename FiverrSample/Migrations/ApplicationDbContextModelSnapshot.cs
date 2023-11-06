@@ -130,9 +130,21 @@ namespace Fiverr_Sample.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NIC")
                         .IsRequired()
@@ -150,7 +162,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
@@ -170,10 +182,10 @@ namespace Fiverr_Sample.Migrations
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FoodOrderLineItemOrderId")
+                    b.Property<int?>("FoodOrderStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FoodOrderLineItemProductId")
+                    b.Property<int?>("FoodOrderStatusListId")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
@@ -189,9 +201,9 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("FoodOrderLineItemOrderId", "FoodOrderLineItemProductId");
+                    b.HasIndex("FoodOrderStatusListId");
 
-                    b.ToTable("FoodOrders", (string)null);
+                    b.ToTable("FoodOrders");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", b =>
@@ -207,9 +219,6 @@ namespace Fiverr_Sample.Migrations
 
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("FoodOrderStatusListId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,11 +240,9 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("OrderId", "ProductId");
 
-                    b.HasIndex("FoodOrderStatusListId");
-
                     b.HasIndex("ProductId");
 
-                    b.ToTable("FoodOrderLineItems", (string)null);
+                    b.ToTable("FoodOrderLineItems");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatusList", b =>
@@ -258,13 +265,17 @@ namespace Fiverr_Sample.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("StatusDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("StatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodOrderStatusLists", (string)null);
+                    b.ToTable("FoodOrderStatusLists");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Product", b =>
@@ -296,7 +307,7 @@ namespace Fiverr_Sample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -439,24 +450,20 @@ namespace Fiverr_Sample.Migrations
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
                 {
                     b.HasOne("Fiverr_Sample.FoodOrdering.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("FoodOrders")
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", "FoodOrderLineItem")
-                        .WithMany()
-                        .HasForeignKey("FoodOrderLineItemOrderId", "FoodOrderLineItemProductId");
+                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatusList", "FoodOrderStatusList")
+                        .WithMany("FoodOrders")
+                        .HasForeignKey("FoodOrderStatusListId");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("FoodOrderLineItem");
+                    b.Navigation("FoodOrderStatusList");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", b =>
                 {
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatusList", "FoodOrderStatusList")
-                        .WithMany()
-                        .HasForeignKey("FoodOrderStatusListId");
-
                     b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrder", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
@@ -468,8 +475,6 @@ namespace Fiverr_Sample.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("FoodOrderStatusList");
 
                     b.Navigation("Order");
 
@@ -527,9 +532,19 @@ namespace Fiverr_Sample.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Customer", b =>
+                {
+                    b.Navigation("FoodOrders");
+                });
+
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
                 {
                     b.Navigation("OrderProducts");
+                });
+
+            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatusList", b =>
+                {
+                    b.Navigation("FoodOrders");
                 });
 
             modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Product", b =>

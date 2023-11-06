@@ -15,24 +15,21 @@ namespace Fiverr_Sample.FoodOrdering.Models
         {
             get
             {
-                return Product.Price * Quantity;
+                return Product is not null ? Product.Price * Quantity : decimal.Zero;
             }
         }
         public int StatusId { get; set; }
 
         public FoodOrder? Order { get; set; }
         public Product? Product { get; set; }
-        public FoodOrderStatusList? FoodOrderStatusList { get; set; }
+        
 
         [Display(Name = "Created By")]
         public string? CreatedBy { get; set; } = string.Empty;
-
         [Display(Name = "Created On")]
         public DateTime? CreatedOn { get; set; }
-
         [Display(Name = "Modifed By")]
         public string? ModifiedBy { get; set; } = string.Empty;
-
         [Display(Name = "Modified On")]
         public DateTime? ModifiedOn { get; set; }
     }

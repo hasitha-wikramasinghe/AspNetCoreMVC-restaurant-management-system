@@ -7,13 +7,37 @@
             <div class="mainnav__categoriy py-3">
                 <ul class="mainnav__menu nav flex-column">
 
-                    @* <li class="nav-item" style="border-bottom: 1px solid blue;">
+                    <li class="nav-item" style="border-bottom: 1px solid blue;">
                         <a href="@Url.Action("Index","dashboard")" class="mininav-toggle nav-link">
                             <i class="nav-icon fa fa-chart-line"></i>
-                            <span class="nav-label ms-1">Orders</span>
+                            <span class="nav-label ms-1">Dashboard</span>
                         </a>
-                    </li> *@
+                    </li>
 
+                    <li class="nav-item has-sub">
+                        <a href="#" class="mininav-toggle nav-link collapsed" style="border-bottom: 1px solid blue;">
+                            <i class="fa fa-cogs fa-fw"></i>
+                            <span class="nav-label ms-1">Master Data</span>
+                        </a>
+                        <!-- Tables submenu list -->
+                        <ul class="mininav-content nav collapse">
+                            <li class="nav-item" style="border-bottom: 1px solid blue;">
+                                <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
+                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <span class="nav-label mininav-content ms-1">Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="border-bottom: 1px solid blue;">
+                                <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
+                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <span class="nav-label mininav-content ms-1">Categories</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- END : Tables submenu list -->
+                    </li>
+                    
+                    
                     <li class="nav-item has-sub">
                         <a href="#" class="mininav-toggle nav-link collapsed" style="border-bottom: 1px solid blue;">
                             <i class="fa fa-cogs fa-fw"></i>
@@ -28,55 +52,42 @@
                                 </a>
                             </li>
                         </ul>
-                        <!-- END : Tables submenu list -->
-                    </li>
-
-                    @* <li class="nav-item has-sub">
-                        <a href="#" class="mininav-toggle nav-link collapsed" style="border-bottom: 1px solid blue;">
-                            <i class="fa fa-cogs fa-fw"></i>
-                            <span class="nav-label ms-1">Adminstration</span>
-                        </a>
-                        <!-- Tables submenu list -->
                         <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
                                     <i class="nav-icon fa fa-user-circle"></i>
-                                    <span class="nav-label mininav-content ms-1">Users</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom: 1px solid blue;">
-                                <a href="@Url.Action("Index","Role")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-copyright"></i>
                                     <span class="nav-label mininav-content ms-1">Roles</span>
                                 </a>
                             </li>
+                        </ul>
+                        <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
-                                <a href="@Url.Action("Index","RolePermission")" class="nav-link mininav-toggle">
-                                    <i class="nav-icond fa fa-user-shield"></i>
-                                    <span class="nav-label mininav-content ms-1">Role Permission</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom: 1px solid blue;">
-                                <a href="@Url.Action("Index","SLA_Escalation")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-layer-group"></i>
-                                    <span class="nav-label mininav-content ms-1">SLA Escalation</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom: 1px solid blue;">
-                                <a href="@Url.Action("Index","DivisionTicketType")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-random"></i>
-                                    <span class="nav-label mininav-content ms-1">Division - TicketType</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom: 1px solid blue;">
-                                <a href="@Url.Action("Index","DivisionStatus")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-random"></i>
-                                    <span class="nav-label mininav-content ms-1">Division - Status</span>
+                                <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
+                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <span class="nav-label mininav-content ms-1">User Roles</span>
                                 </a>
                             </li>
                         </ul>
                         <!-- END : Tables submenu list -->
-                    </li> *@
+                    </li>
+
+                    <li class="nav-item has-sub">
+                        <a href="#" class="mininav-toggle nav-link collapsed" style="border-bottom: 1px solid blue;">
+                            <i class="fa fa-cogs fa-fw"></i>
+                            <span class="nav-label ms-1">Food Ordering</span>
+                        </a>
+                        <!-- Tables submenu list -->
+                        <ul class="mininav-content nav collapse">
+                            <li class="nav-item" style="border-bottom: 1px solid blue;">
+                                <a href="@Url.Action("Index", "FoodOrder")" class="nav-link mininav-toggle">
+                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <span class="nav-label mininav-content ms-1">Order Management</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- END : Tables submenu list -->
+                    </li>
+
                 </ul>
             </div>
         </div>
