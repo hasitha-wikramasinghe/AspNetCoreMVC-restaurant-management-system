@@ -66,35 +66,71 @@
                                 <label asp-for="FoodOrderTime" class="col-form-label-sm"></label>
                                 <input id="_dm-mdDateTimePicker-showTime-portrait" type="text" class="form-control" placeholder="Input time" asp-for="FoodOrderTime">
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-4">
                                 <label asp-for="OrderCodeString" class="col-form-label-sm"></label>
                                 <input id="txtOrderId" disabled asp-for="Id" type="text" class="form-control" placeholder="Order Id" />
                             </div>
+                        </div>
+
+                        <br />
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table col-form-label-sm" id="tblUsers">
+                                    <thead class="thead-dark">
+                                        <tr class="">
+                                            <th>Product Code</th>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Unit Price</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>P00841</td>
+                                            <td>Chicken Biriyani</td>
+                                            <td>3</td>
+                                            <td>$15</td>
+                                            <td>$45</td>
+                                        </tr>
+                                        <tr>
+                                            <td>P00268</td>
+                                            <td>Chicken Bucket</td>
+                                            <td>5</td>
+                                            <td>$10</td>
+                                            <td>$50</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <hr />
+
+                        <div class="row">
                             <div class="col-md-4">
                                 <label asp-for="CustomerName" class="col-form-label-sm"></label>
-                                <input id="txtLastName" asp-for="CustomerName" type="text" class="form-control" placeholder="Name" />
+                                <input id="txtLastName" asp-for="CustomerName" type="text" class="form-control" placeholder="Customer Name" />
                             </div>
                             <div class="col-md-4">
                                 <label asp-for="CustomerEmail" class="col-form-label-sm"></label>
-                                <input id="txtEmail" asp-for="CustomerEmail" type="text" class="form-control" placeholder="Email" />
+                                <input id="txtEmail" asp-for="CustomerEmail" type="text" class="form-control" placeholder="Customer Email" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CustomerPhoneNumber" class="col-form-label-sm"></label>
+                                <input id="txtOrderId" asp-for="CustomerPhoneNumber" type="text" class="form-control" placeholder="Customer Phone Number" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <label asp-for="CustomerPhoneNumber" class="col-form-label-sm"></label>
-                                <input id="txtOrderId" asp-for="CustomerPhoneNumber" type="text" class="form-control" placeholder="First Name" />
-                            </div>
-                            <div class="col-md-4">
                                 <label asp-for="CreatedBy" class="col-form-label-sm"></label>
-                                <input id="txtCreatedBy" disabled asp-for="CreatedBy" type="text" class="form-control" placeholder="First Name" />
+                                <input id="txtCreatedBy" disabled asp-for="CreatedBy" type="text" class="form-control" placeholder="Created By" />
                             </div>
                             <div class="col-md-4">
                                 <label asp-for="CreatedOn" class="col-form-label-sm"></label>
-                                <input id="txtCreatedOn" disabled asp-for="CreatedOn" type="text" class="form-control" placeholder="Last Name" />
+                                <input id="txtCreatedOn" disabled asp-for="CreatedOn" type="text" class="form-control" placeholder="Created On" />
                             </div>
                         </div>
                         <br />

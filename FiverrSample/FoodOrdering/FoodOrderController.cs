@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Fiverr_Sample.DataAccess;
 using Fiverr_Sample.FoodOrdering.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Fiverr_Sample.FoodOrdering
             _mapper = mapper;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var orders = await (from foodOrder in _dbContext.FoodOrder
@@ -41,6 +43,7 @@ namespace Fiverr_Sample.FoodOrdering
             return View(orders);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -76,6 +79,7 @@ namespace Fiverr_Sample.FoodOrdering
             return latestFoodOrder?.Id != null ? (latestFoodOrder.OrderCode + 1) : 00000001;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(FoodOrderDTO foodOrderDto)
         {

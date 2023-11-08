@@ -1,5 +1,6 @@
 ﻿using Fiverr_Sample.Authentication.Models;
 using Fiverr_Sample.DataAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace Fiverr_Sample.Authentication
             _signinManager = signinManager;
             _context = context;
         }
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var users = await _context.ApplicationUser

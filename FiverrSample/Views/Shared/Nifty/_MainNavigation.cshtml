@@ -16,30 +16,26 @@
                     
                     <li class="nav-item has-sub">
                         <a href="#" class="mininav-toggle nav-link collapsed" style="border-bottom: 1px solid blue;">
-                            <i class="fa fa-cogs fa-fw"></i>
+                            <i class="fa-solid fa-building-circle-exclamation"></i>
                             <span class="nav-label ms-1">Adminstration</span>
                         </a>
                         <!-- Tables submenu list -->
                         <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <i class="fa-solid fa-user"></i>
                                     <span class="nav-label mininav-content ms-1">Users</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <i class="fa-solid fa-ban"></i>
                                     <span class="nav-label mininav-content ms-1">Roles</span>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <i class="fa-solid fa-key"></i>
                                     <span class="nav-label mininav-content ms-1">User Roles</span>
                                 </a>
                             </li>
@@ -56,8 +52,14 @@
                         <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "FoodOrder")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <i class="fa-regular fa-rectangle-list"></i>
                                     <span class="nav-label mininav-content ms-1">All Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="border-bottom: 1px solid blue;">
+                                <a href="@Url.Action("Create", "FoodOrder")" class="nav-link mininav-toggle">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <span class="nav-label mininav-content ms-1">New Order</span>
                                 </a>
                             </li>
                         </ul>
@@ -73,14 +75,20 @@
                         <ul class="mininav-content nav collapse">
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <i class="fa-solid fa-boxes-stacked"></i>
                                     <span class="nav-label mininav-content ms-1">Products</span>
                                 </a>
                             </li>
                             <li class="nav-item" style="border-bottom: 1px solid blue;">
                                 <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
-                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <i class="fa-solid fa-sliders"></i>
                                     <span class="nav-label mininav-content ms-1">Categories</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="border-bottom: 1px solid blue;">
+                                <a href="@Url.Action("Index", "User")" class="nav-link mininav-toggle">
+                                    <i class="fa-solid fa-inbox"></i>
+                                    <span class="nav-label mininav-content ms-1">Dining Tables</span>
                                 </a>
                             </li>
                         </ul>
@@ -95,33 +103,8 @@
 </nav>
 
 @*<style>
-        .nav-link {
-            color: green;
-        }
 
-        .nav-item > a:hover {
-            color: green;
-        }
-
-        /*code to change background color*/
-        .mainnav__menu nav flex-column > .active > a {
-            background-color: #C0C0C0;
-            color: green;
-        }
-    </style>
-
-
-    <script>
-            $(document).ready(function () {
-
-                $('ul.mainnav__menu nav flex-column > li')
-                        .click(function (e) {
-                            $('mainnav__menu nav flex-column > li')
-                        .removeClass('active');
-                    $(this).addClass('active');
-                });
-            });
-    </script>*@
+</script>*@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!-- END - MAIN NAVIGATION -->
