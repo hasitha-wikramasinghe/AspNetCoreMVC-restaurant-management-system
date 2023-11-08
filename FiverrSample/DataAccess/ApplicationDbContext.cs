@@ -31,13 +31,14 @@ namespace Fiverr_Sample.DataAccess
             
         }
 
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<FoodOrder> FoodOrders { get; set; }
-        public DbSet<FoodOrderLineItem> FoodOrderLineItems { get; set; }
-        public DbSet<FoodOrderStatusList> FoodOrderStatusLists { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<FoodOrder> FoodOrder { get; set; }
+        public DbSet<FoodOrderLineItem> FoodOrderLineItem { get; set; }
+        public DbSet<FoodOrderStatus> FoodOrderStatus { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<DiningTable> DiningTable { get; set; }
+        public DbSet<FoodOrderType> FoodOrderType { get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
-﻿@model Fiverr_Sample.FoodOrdering.Models.FoodOrder
+﻿@model Fiverr_Sample.FoodOrdering.Models.FoodOrderDTO
 @{
-    ViewData["Title"] = "Orders";
+    ViewData["Title"] = "Order";
     Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
 }
 
@@ -14,57 +14,86 @@
         <div class="row">
             <div class="col-md-6">
                 <h3 class="card-title">
-                    Create Your @ViewData["Title"]
+                    New @ViewData["Title"]
                 </h3>
             </div>
-
             <div class="col-md-6" style="float: right;">
-                <div class="card-tools">
-                    <div class="row">
-                        <div class="col-md-8">
-                        </div>
-                        <div class="col-md-4">
-                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa fa-user-plus" aria-hidden="true"></i> User</a>
-                        </div>
-                    </div>
-                </div>
+                @* If need can use this section as well *@
             </div>
         </div>
-
-        <br>
     </div>
 
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <h3 class="card-title">
-                    <form id="formNewUser" asp-action="Create" asp-controller="User" method="post">
+                    <form asp-action="Create" asp-controller="FoodOrder" method="post">
+
                         <div class="row">
                             <div class="col-md-4">
-                                <label asp-for="Id" class="control-label"></label>
-                                <input id="txtOrderId" disabled asp-for="Id" type="text" class="form-control" placeholder="Order Id" />
+                                <label asp-for="DiningTableId" class="col-form-label-sm"></label>
+                                <select id="selectOrderType" class="form-control">
+                                    <option value="0">- Please Select -</option>
+                                        @if (Model.FoodOrderTypes != null)
+                                        {
+                                            @foreach (var orderType in Model.FoodOrderTypes)
+                                            {
+                                                <option value="@orderType.Id">@orderType.OrderTypeName</option>
+                                            }
+                                        }
+                                    
+                                </select>
                             </div>
                             <div class="col-md-4">
-                                <label asp-for="Customer.Name" class="control-label"></label>
-                                <input id="txtLastName" asp-for="Customer.Name" type="text" class="form-control" placeholder="Name" />
-                            </div>
-                            <div class="col-md-4">
-                                <label asp-for="Customer.Email" class="control-label"></label>
-                                <input id="txtEmail" asp-for="Customer.Email" type="text" class="form-control" placeholder="Email" />
+                                <label id="lblDiningTable" asp-for="DiningTableId" class="col-form-label-sm" style="display: none;"></label>
+                                <select id="selectDiningTable" class="form-control" style="display: none;">
+                                    <option value="0">- Please Select -</option>
+                                    @if (Model.DiningTables is not null)
+                                    @foreach (var diningTable in Model.DiningTables)
+                                    {
+                                        <option value="@diningTable.Id">@diningTable.TableName</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <label asp-for="Customer.PhoneNumber" class="control-label"></label>
-                                <input id="txtOrderId" asp-for="Customer.PhoneNumber" type="text" class="form-control" placeholder="First Name" />
+                                <label asp-for="FoodOrderDate" class="col-form-label-sm"></label>
+                                <input id="_dm-mcDatepicker-inline" type="text" class="form-control" placeholder="Order Date" asp-for="FoodOrderDate">
                             </div>
                             <div class="col-md-4">
-                                <label asp-for="CreatedBy" class="control-label"></label>
+                                <label asp-for="FoodOrderTime" class="col-form-label-sm"></label>
+                                <input id="_dm-mdDateTimePicker-showTime-portrait" type="text" class="form-control" placeholder="Input time" asp-for="FoodOrderTime">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label asp-for="OrderCodeString" class="col-form-label-sm"></label>
+                                <input id="txtOrderId" disabled asp-for="Id" type="text" class="form-control" placeholder="Order Id" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CustomerName" class="col-form-label-sm"></label>
+                                <input id="txtLastName" asp-for="CustomerName" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CustomerEmail" class="col-form-label-sm"></label>
+                                <input id="txtEmail" asp-for="CustomerEmail" type="text" class="form-control" placeholder="Email" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label asp-for="CustomerPhoneNumber" class="col-form-label-sm"></label>
+                                <input id="txtOrderId" asp-for="CustomerPhoneNumber" type="text" class="form-control" placeholder="First Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CreatedBy" class="col-form-label-sm"></label>
                                 <input id="txtCreatedBy" disabled asp-for="CreatedBy" type="text" class="form-control" placeholder="First Name" />
                             </div>
                             <div class="col-md-4">
-                                <label asp-for="CreatedOn" class="control-label"></label>
+                                <label asp-for="CreatedOn" class="col-form-label-sm"></label>
                                 <input id="txtCreatedOn" disabled asp-for="CreatedOn" type="text" class="form-control" placeholder="Last Name" />
                             </div>
                         </div>
@@ -82,16 +111,6 @@
 
     <br>
 
-
-    @* <div class="card-body w-auto">
-    <div id="alertContainer" class="col-md-12">
-    @Html.Raw(TempData["Alert"])
-    </div>
-
-    <div id="gridContainer">
-    </div>
-    </div> *@
-
 </div>
 
 <style>
@@ -103,11 +122,6 @@
         height: 20px;
     }
 
-    /*.fa {
-                    height: 20px;
-                    margin-top: -5px;
-                }*/
-
     .fa-edit {
         height: 20px;
         width: 5px;
@@ -117,6 +131,19 @@
 
 
 @section scripts{
-
+    <script>
+        $('#selectOrderType').change(function () {
+            var selectedOrderType = $('#selectOrderType').val();
+            
+            if (selectedOrderType == 1) {
+                $('#lblDiningTable').show();
+                $('#selectDiningTable').show();
+            } else {
+                $('#selectDiningTable').val = 0;
+                $('#lblDiningTable').hide();
+                $('#selectDiningTable').hide();
+            }
+        });
+    </script>
 }
 

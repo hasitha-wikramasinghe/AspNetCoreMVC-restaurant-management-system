@@ -6,13 +6,18 @@ namespace Fiverr_Sample.FoodOrdering.Models
     public class FoodOrder
     {
         public int Id { get; set; }
+        public int OrderCode { get; set; } 
         public decimal TotalPrice { get; set; }
         public int? CustomerId { get; set; }
         public int? FoodOrderStatusId { get; set; }
+        public int? DiningTableId { get; set; }
+        public int? FoodOrderTypeId { get; set; }
 
         public Customer? Customer { get; set; }
-        public FoodOrderStatusList? FoodOrderStatusList { get; set; }
+        public FoodOrderStatus? FoodOrderStatusList { get; set; }
+        public DiningTable? DiningTable { get; set; }
         public ICollection<FoodOrderLineItem>? OrderProducts { get; set; }
+        public FoodOrderType? FoodOrderTypeList { get; set; }
 
 
         [Display(Name = "Created By")]

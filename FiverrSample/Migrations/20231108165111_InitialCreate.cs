@@ -60,16 +60,16 @@ namespace Fiverr_Sample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "Customer",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    OrdersCompleted = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NIC = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: true),
+                    OrdersCompleted = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -77,11 +77,29 @@ namespace Fiverr_Sample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Customer", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodOrderStatusLists",
+                name: "DiningTable",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TableName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TableDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiningTable", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FoodOrderStatus",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -95,11 +113,25 @@ namespace Fiverr_Sample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodOrderStatusLists", x => x.Id);
+                    table.PrimaryKey("PK_FoodOrderStatus", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "FoodOrderType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderTypeDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodOrderType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -113,7 +145,7 @@ namespace Fiverr_Sample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Product", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -223,15 +255,17 @@ namespace Fiverr_Sample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodOrders",
+                name: "FoodOrder",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderCode = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: true),
                     FoodOrderStatusId = table.Column<int>(type: "int", nullable: true),
-                    FoodOrderStatusListId = table.Column<int>(type: "int", nullable: true),
+                    DiningTableId = table.Column<int>(type: "int", nullable: true),
+                    FoodOrderTypeId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -239,21 +273,31 @@ namespace Fiverr_Sample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodOrders", x => x.Id);
+                    table.PrimaryKey("PK_FoodOrder", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FoodOrders_Customers_CustomerId",
+                        name: "FK_FoodOrder_Customer_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customers",
+                        principalTable: "Customer",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_FoodOrders_FoodOrderStatusLists_FoodOrderStatusListId",
-                        column: x => x.FoodOrderStatusListId,
-                        principalTable: "FoodOrderStatusLists",
+                        name: "FK_FoodOrder_DiningTable_DiningTableId",
+                        column: x => x.DiningTableId,
+                        principalTable: "DiningTable",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FoodOrder_FoodOrderStatus_FoodOrderStatusId",
+                        column: x => x.FoodOrderStatusId,
+                        principalTable: "FoodOrderStatus",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FoodOrder_FoodOrderType_FoodOrderTypeId",
+                        column: x => x.FoodOrderTypeId,
+                        principalTable: "FoodOrderType",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodOrderLineItems",
+                name: "FoodOrderLineItem",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
@@ -269,17 +313,17 @@ namespace Fiverr_Sample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodOrderLineItems", x => new { x.OrderId, x.ProductId });
+                    table.PrimaryKey("PK_FoodOrderLineItem", x => new { x.OrderId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_FoodOrderLineItems_FoodOrders_OrderId",
+                        name: "FK_FoodOrderLineItem_FoodOrder_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "FoodOrders",
+                        principalTable: "FoodOrder",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FoodOrderLineItems_Products_ProductId",
+                        name: "FK_FoodOrderLineItem_Product_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -324,19 +368,31 @@ namespace Fiverr_Sample.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodOrderLineItems_ProductId",
-                table: "FoodOrderLineItems",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FoodOrders_CustomerId",
-                table: "FoodOrders",
+                name: "IX_FoodOrder_CustomerId",
+                table: "FoodOrder",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodOrders_FoodOrderStatusListId",
-                table: "FoodOrders",
-                column: "FoodOrderStatusListId");
+                name: "IX_FoodOrder_DiningTableId",
+                table: "FoodOrder",
+                column: "DiningTableId",
+                unique: true,
+                filter: "[DiningTableId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FoodOrder_FoodOrderStatusId",
+                table: "FoodOrder",
+                column: "FoodOrderStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FoodOrder_FoodOrderTypeId",
+                table: "FoodOrder",
+                column: "FoodOrderTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FoodOrderLineItem_ProductId",
+                table: "FoodOrderLineItem",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -357,7 +413,7 @@ namespace Fiverr_Sample.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "FoodOrderLineItems");
+                name: "FoodOrderLineItem");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -366,16 +422,22 @@ namespace Fiverr_Sample.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "FoodOrders");
+                name: "FoodOrder");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Customer");
 
             migrationBuilder.DropTable(
-                name: "FoodOrderStatusLists");
+                name: "DiningTable");
+
+            migrationBuilder.DropTable(
+                name: "FoodOrderStatus");
+
+            migrationBuilder.DropTable(
+                name: "FoodOrderType");
         }
     }
 }

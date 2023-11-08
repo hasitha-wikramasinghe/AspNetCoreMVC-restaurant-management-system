@@ -1,4 +1,4 @@
-﻿@model List<Fiverr_Sample.FoodOrdering.Models.FoodOrder>
+﻿@model List<Fiverr_Sample.FoodOrdering.Models.FoodOrderDTO>
 @{
     ViewData["Title"] = "Orders";
     Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
@@ -24,7 +24,7 @@
                         <div class="col-md-8">
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa-solid fa-square-plus"></i> Order</a>
+                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa-solid fa-cart-plus"></i> Order</a>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,8 @@
         <table class="table" id="tblUsers">
             <thead class="thead-dark">
                 <tr>
-                    <th>Order Id</th>
+                    <th>Order Code</th>
+                    <th>Customer</th>
                     <th>Status</th>
                     <th>Total Price</th>
                     <th>Actions</th>
@@ -49,8 +50,9 @@
                 @foreach (var foodOrder in Model)
                 {
                     <tr>
-                        <td>@foodOrder.Id</td>
-                        <td>@foodOrder.FoodOrderStatusList?.StatusName</td>
+                        <td>@foodOrder.OrderCodeString</td>
+                        <td>@foodOrder.CustomerName</td>
+                        <td>@foodOrder.FoodOrderStatusName</td>
                         <td>@foodOrder.TotalPrice</td>
                         <td>
                             <a class="btn btn-info" href="@Url.Action("Update", new {Id = foodOrder.Id})"><i class="fa-solid fa-pen fa-fw"></i></a>

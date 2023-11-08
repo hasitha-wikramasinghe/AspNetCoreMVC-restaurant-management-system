@@ -4,15 +4,16 @@
 
 namespace Fiverr_Sample.Migrations
 {
-    public partial class InsertFoodOrderStatusList : Migration
+    public partial class InsertFoodOrderStatus : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            string foodOrderStatusListInsertQuery = "INSERT INTO [dbo].[FoodOrderStatusLists]" +
+            string foodOrderStatusListInsertQuery = "INSERT INTO [dbo].[FoodOrderStatus]" +
                         "([StatusName],[StatusDescription],[CreatedBy],[CreatedOn],[ModifiedBy],[ModifiedOn])" +
                         "VALUES" +
-                        "('Created','Created',null, null, null, null)," +
-                        "('In Progress','In Progress',null, null, null, null)," +
+                        "('KOT Pending','KOT Pending',null, null, null, null)," +
+                        "('KOT Ready','KOT Ready',null, null, null, null)," +
+                        "('Served','Served',null, null, null, null)," +
                         "('Completed','Completed',null, null, null, null)," +
                         "('Cancelled','Cancelled',null, null, null, null);";
 
