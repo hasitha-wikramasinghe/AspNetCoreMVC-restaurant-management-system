@@ -55,6 +55,7 @@ namespace Fiverr_Sample.FoodOrdering
             return View(foodOrderDTO);
         }
 
+        // TODO:: Use this function to build food order when implementing new food order saving/updating part
         private async Task<FoodOrder> BuildFoodOrder()
         {
             FoodOrder foodOrder = new FoodOrder();
@@ -170,6 +171,12 @@ namespace Fiverr_Sample.FoodOrdering
 
             _dbContext.FoodOrder.Update(updatedFoodOrder);
             return await _dbContext.SaveChangesAsync();
+        }
+
+        [HttpGet]
+        public IActionResult CreateNewLineItem()
+        {
+            return PartialView("_NewLineItemPartial");
         }
 
     }

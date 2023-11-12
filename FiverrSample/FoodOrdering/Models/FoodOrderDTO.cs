@@ -33,6 +33,7 @@ namespace Fiverr_Sample.FoodOrdering.Models
         public string? FoodOrderStatusName { get; set; }
         [Display(Name = "Dining Table")]
         public int? DiningTableId { get; set; }
+        [Display(Name = "Order Type")]
         public int? FoodOrderTypeId { get; set; }
         [Display(Name = "Date")]
         public DateOnly FoodOrderDate { get; set; }
@@ -40,7 +41,8 @@ namespace Fiverr_Sample.FoodOrdering.Models
         public TimeOnly FoodOrderTime { get; set; }
 
         public ICollection<DiningTable>? DiningTables { get; set; }
-        public ICollection<FoodOrderType>? FoodOrderTypes { get; set; } 
+        public ICollection<FoodOrderType>? FoodOrderTypes { get; set; }
+        public ICollection<FoodOrderLineItem>? OrderProducts { get; set; }
 
         [Display(Name = "Created By")]
         public string? CreatedBy { get; set; } = string.Empty;
