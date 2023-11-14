@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Fiverr_Sample.MasterData.Models;
 
 namespace Fiverr_Sample.FoodOrdering.Models
 {

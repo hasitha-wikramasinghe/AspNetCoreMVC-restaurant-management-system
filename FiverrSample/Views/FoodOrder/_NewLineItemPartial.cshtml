@@ -16,20 +16,31 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label class="col-form-label-sm">Product Code</label>
-                            <input id="txtProductCode" disabled type="text" class="form-control" placeholder="Product Code" />
+                            <select id="selectProductCode" class="form-control">
+                                <option value="0">Product Code</option>
+                            </select>
                             <span class="text-danger" id="lblRoleAlreadyExistsError" style="display: none;">For any validations this can be used.</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <label class="col-form-label-sm">Product Name</label>
-                            <input id="txtProductName" type="text" class="form-control" placeholder="Product Name" />
+                            <select id="selectProduct" class="form-control">
+                                <option value="0">- Please Select -</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-md-12">
+                            <label class="col-form-label-sm">Product Price</label>
+                            <select id="selectProductPrice" class="form-control">
+                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <label class="col-form-label-sm">Quantity</label>
-                            <input id="txtQuantity" type="text" class="form-control" placeholder="Product Name" />
+                            <input id="txtQuantity" type="text" class="form-control" placeholder="Quantity" />
                         </div>
                     </div>
 
@@ -43,3 +54,5 @@
         </div>
     </div>
 </div>
+
+<partial name="_LineItemScripts" />

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
+using Fiverr_Sample.MasterData.Models;
 
 namespace Fiverr_Sample.FoodOrdering.Models
 {
@@ -42,7 +43,7 @@ namespace Fiverr_Sample.FoodOrdering.Models
 
         public ICollection<DiningTable>? DiningTables { get; set; }
         public ICollection<FoodOrderType>? FoodOrderTypes { get; set; }
-        public ICollection<FoodOrderLineItem>? OrderProducts { get; set; }
+        public ICollection<Product>? Products { get; set; }
 
         [Display(Name = "Created By")]
         public string? CreatedBy { get; set; } = string.Empty;

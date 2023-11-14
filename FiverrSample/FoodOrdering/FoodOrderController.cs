@@ -51,6 +51,7 @@ namespace Fiverr_Sample.FoodOrdering
 
             foodOrderDTO.FoodOrderTypes = await _dbContext.FoodOrderType.ToListAsync();
             foodOrderDTO.DiningTables = await _dbContext.DiningTable.ToListAsync();
+            foodOrderDTO.Products = await _dbContext.Product.ToListAsync();
 
             return View(foodOrderDTO);
         }

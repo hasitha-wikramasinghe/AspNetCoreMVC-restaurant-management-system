@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Fiverr_Sample.FoodOrdering.Models;
 
-namespace Fiverr_Sample.FoodOrdering.Models
+namespace Fiverr_Sample.MasterData.Models
 {
     public class Product
     {
@@ -10,6 +11,7 @@ namespace Fiverr_Sample.FoodOrdering.Models
         public int Id { get; set; }
         public string ProductName { get; set; } = string.Empty;
         public decimal Price { get; set; }
+        public string? ProductCode { get; set; }
 
         public ICollection<FoodOrderLineItem>? OrderProducts { get; set; }
 

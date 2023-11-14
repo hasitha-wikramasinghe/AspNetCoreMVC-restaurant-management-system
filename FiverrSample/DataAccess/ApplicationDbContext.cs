@@ -1,5 +1,6 @@
 ﻿using Fiverr_Sample.Authentication.Models;
 using Fiverr_Sample.FoodOrdering.Models;
+using Fiverr_Sample.MasterData.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;

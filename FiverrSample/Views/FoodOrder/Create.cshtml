@@ -211,7 +211,33 @@
                 $('body').append(data);     // Append the new modal
                 $('#NewLineItem').modal('show');
             })
+            loadProducts();
         })
+
+        function loadProducts() { 
+            $.ajax({
+                type: 'GET',
+                url: '../Product/GetAllProducts',
+                success: function (response) {
+
+                    var htmlProductName = '<option value="0" selected>- Please Select -</option>';
+                    var htmlProductCode = '<option value="0" selected>- Please Select -</option>';
+                    var htmlProductPrice = '<option value="0" selected>- Please Select -</option>';
+
+                    $.each(response, function (index, value) {
+                        htmlProductName += '<option value="' + value.id + '">' + value.productName + '</option>';
+                        htmlProductCode += '<option value="' + value.id + '">' + value.productCode + '</option>';
+                        htmlProductPrice += '<option value="' + value.id + '">' + value.price + '</option>';
+                    })
+                    $('#selectProduct').html(htmlProductName);
+                    $('#selectProductCode').html(htmlProductCode);
+                    $('#selectProductPrice').html(htmlProductPrice);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        }
 
     </script>
 }
