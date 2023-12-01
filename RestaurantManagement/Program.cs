@@ -1,8 +1,7 @@
-using RestaurantManagement.Authentication.Models;
-using RestaurantManagement.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using RestaurantManagement.Authentication.Models;
+using RestaurantManagement.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,8 +35,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddAutoMapper(typeof(Program));
-
+//builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

@@ -1,9 +1,9 @@
-﻿using RestaurantManagement.Authentication.Models;
-using RestaurantManagement.DataAccess;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+using RestaurantManagement.Authentication.Models;
+using RestaurantManagement.DataAccess;
 
 namespace RestaurantManagement.Authentication
 {
@@ -29,7 +29,7 @@ namespace RestaurantManagement.Authentication
             var users = await _context.ApplicationUser
                 .Where(user => user.IsDeleted == false || user.IsDeleted == null)
                 .OrderBy(user => user.FirstName)
-                .ToListAsync(); 
+                .ToListAsync();
             return View(users);
         }
 
@@ -42,7 +42,7 @@ namespace RestaurantManagement.Authentication
         [HttpPost]
         public async Task<IActionResult> Create(ApplicationUser applicationUser)
         {
-            // ATM using email as the user name 
+            // ATM using email as the user name
             applicationUser.UserName = applicationUser.Email;
             applicationUser.EmailConfirmed = true;
             applicationUser.IsActive = true;
@@ -60,14 +60,14 @@ namespace RestaurantManagement.Authentication
         }
 
         [HttpGet("Update/{Id}")]
-        public async Task<IActionResult> Update([FromRoute]string id)
+        public async Task<IActionResult> Update([FromRoute] string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             return View(user);
         }
 
         [HttpGet("Delete/{Id}")]
-        public async Task<IActionResult> Delete([FromRoute]string id)
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             user.IsDeleted = true;

@@ -1,7 +1,8 @@
-﻿using RestaurantManagement.Authentication.Models;
+﻿using Fiverr_Sample.FoodOrdering.Models;
+using Fiverr_Sample.MasterData.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
+using RestaurantManagement.Authentication.Models;
 
 namespace RestaurantManagement.DataAccess
 {
@@ -27,7 +28,6 @@ namespace RestaurantManagement.DataAccess
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
         }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
@@ -38,6 +38,5 @@ namespace RestaurantManagement.DataAccess
         public DbSet<Customer> Customer { get; set; }
         public DbSet<DiningTable> DiningTable { get; set; }
         public DbSet<FoodOrderType> FoodOrderType { get; set; }
-
     }
 }

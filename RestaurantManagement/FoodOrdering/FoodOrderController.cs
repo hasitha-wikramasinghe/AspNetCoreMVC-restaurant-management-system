@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Fiverr_Sample.DataAccess;
 using Fiverr_Sample.FoodOrdering.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Security.Claims;
+using RestaurantManagement.DataAccess;
 
 namespace Fiverr_Sample.FoodOrdering
 {
@@ -13,6 +11,7 @@ namespace Fiverr_Sample.FoodOrdering
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+
         public FoodOrderController(
             ApplicationDbContext dbContext,
             IMapper mapper)
@@ -29,16 +28,16 @@ namespace Fiverr_Sample.FoodOrdering
                                 from tFoodOrderStatus in tempFoodOrderStatus.DefaultIfEmpty()
                                 join customer in _dbContext.Customer on foodOrder.CustomerId equals customer.Id into tempCustomer
                                 from tCustomer in tempCustomer.DefaultIfEmpty()
-                           select new FoodOrderDTO()
-                           {
-                               Id = foodOrder.Id,
-                               OrderCodeString = $"#ORD_{foodOrder.OrderCode}",
-                               TotalPrice = foodOrder.TotalPrice,
-                               CustomerId = foodOrder.CustomerId,
-                               FoodOrderStatusId = foodOrder.FoodOrderStatusId,
-                               CustomerName = tCustomer != null ? tCustomer.Name : string.Empty,
-                               FoodOrderStatusName = tFoodOrderStatus != null ? tFoodOrderStatus.StatusName : string.Empty ,
-                           }).ToListAsync();
+                                select new FoodOrderDTO()
+                                {
+                                    Id = foodOrder.Id,
+                                    OrderCodeString = $"#ORD_{foodOrder.OrderCode}",
+                                    TotalPrice = foodOrder.TotalPrice,
+                                    CustomerId = foodOrder.CustomerId,
+                                    FoodOrderStatusId = foodOrder.FoodOrderStatusId,
+                                    CustomerName = tCustomer != null ? tCustomer.Name : string.Empty,
+                                    FoodOrderStatusName = tFoodOrderStatus != null ? tFoodOrderStatus.StatusName : string.Empty,
+                                }).ToListAsync();
 
             return View(orders);
         }
@@ -149,9 +148,9 @@ namespace Fiverr_Sample.FoodOrdering
 
         private bool ValidateCustomer(FoodOrderDTO foodOrderDTO)
         {
-            if (foodOrderDTO.CustomerName is not null || 
-                foodOrderDTO.CustomerEmail is not null || 
-                foodOrderDTO.CustomerNIC is not null || 
+            if (foodOrderDTO.CustomerName is not null ||
+                foodOrderDTO.CustomerEmail is not null ||
+                foodOrderDTO.CustomerNIC is not null ||
                 foodOrderDTO.CustomerPhoneNumber is not null)
             {
                 return true;
@@ -179,6 +178,5 @@ namespace Fiverr_Sample.FoodOrdering
         {
             return PartialView("_NewLineItemPartial");
         }
-
     }
 }
