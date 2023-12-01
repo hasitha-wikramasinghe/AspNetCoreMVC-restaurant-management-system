@@ -1,0 +1,106 @@
+﻿@model List<RestaurantManagement.Authentication.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
+}
+
+<br />
+
+<link rel="stylesheet" href="~/css/styles.css" type="text/css" />
+
+<div id="placeHolder"></div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="card-title">
+                    Manage Your @ViewData["Title"]
+                </h3>
+            </div>
+
+            <div class="col-md-6" style="float: right;">
+                <div class="card-tools">
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa fa-user-plus" aria-hidden="true"></i> User</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+    </div>
+
+
+    <div class="card-body">
+        <table class="table" id="tblUsers">
+            <thead class="thead-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>NIC</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.FirstName</td>
+                        <td>@user.MiddleName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.NIC</td>
+                        <td><a class="btn btn-info" href="@Url.Action("Update", new {Id = user.Id})"><i class="fa-solid fa-pen fa-fw"></i></a>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')" href="@Url.Action("Delete", new {Id = user.Id})"><i class="fa-solid fa-trash-can fa-fw"></i></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+    div.container {
+        max-width: 1200px
+    }
+
+    .dx-button {
+        height: 20px;
+    }
+
+    /*.fa {
+            height: 20px;
+            margin-top: -5px;
+        }*/
+
+    .fa-edit {
+        height: 20px;
+        width: 5px;
+        margin-top: -7px;
+    }
+</style>
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#tblUsers').DataTable({
+                "ordering": false,
+                "scrollX": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                //"buttons": ["excel", "pdf"],
+            });//.buttons().container().appendTo('#userTbl_wrapper .col-md-6:eq(0)');
+            //$('.dataTables_length').addClass('bs-select');
+        })
+    </script>
+
+}
+
