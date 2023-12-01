@@ -1,9 +1,9 @@
-﻿using Fiverr_Sample.MasterData.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.DataAccess;
+using RestaurantManagement.MasterData.Models;
 
-namespace Fiverr_Sample.MasterData
+namespace RestaurantManagement.MasterData
 {
     public class ProductController : Controller
     {

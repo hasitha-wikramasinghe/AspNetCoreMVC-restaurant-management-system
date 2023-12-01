@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fiverr_Sample.FoodOrdering.Models
+namespace RestaurantManagement.FoodOrdering.Models
 {
     public class FoodOrderType
     {

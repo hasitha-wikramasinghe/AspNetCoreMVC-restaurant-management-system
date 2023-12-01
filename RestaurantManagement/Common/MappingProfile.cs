@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Fiverr_Sample.FoodOrdering.Models;
+using RestaurantManagement.FoodOrdering.Models;
 
-namespace Fiverr_Sample.Common
+namespace RestaurantManagement.Common
 {
     public class MappingProfile : Profile
     {

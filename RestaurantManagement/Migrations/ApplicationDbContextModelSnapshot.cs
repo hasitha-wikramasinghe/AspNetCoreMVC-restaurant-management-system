@@ -22,7 +22,7 @@ namespace RestaurantManagement.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Customer", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.DiningTable", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.DiningTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,7 +93,7 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("DiningTable");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -146,7 +146,7 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("FoodOrder");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrderLineItem", b =>
                 {
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -185,7 +185,7 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("FoodOrderLineItem");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatus", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrderStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -218,7 +218,7 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("FoodOrderStatus");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderType", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrderType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -249,7 +249,7 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("FoodOrderType");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.MasterData.Models.Product", b =>
+            modelBuilder.Entity("RestaurantManagement.MasterData.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -521,21 +521,21 @@ namespace RestaurantManagement.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrder", b =>
                 {
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.Customer", "Customer")
+                    b.HasOne("RestaurantManagement.FoodOrdering.Models.Customer", "Customer")
                         .WithMany("FoodOrders")
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.DiningTable", "DiningTable")
+                    b.HasOne("RestaurantManagement.FoodOrdering.Models.DiningTable", "DiningTable")
                         .WithOne("FoodOrder")
-                        .HasForeignKey("Fiverr_Sample.FoodOrdering.Models.FoodOrder", "DiningTableId");
+                        .HasForeignKey("RestaurantManagement.FoodOrdering.Models.FoodOrder", "DiningTableId");
 
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatus", "FoodOrderStatusList")
+                    b.HasOne("RestaurantManagement.FoodOrdering.Models.FoodOrderStatus", "FoodOrderStatusList")
                         .WithMany("FoodOrders")
                         .HasForeignKey("FoodOrderStatusId");
 
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrderType", "FoodOrderTypeList")
+                    b.HasOne("RestaurantManagement.FoodOrdering.Models.FoodOrderType", "FoodOrderTypeList")
                         .WithMany("FoodOrders")
                         .HasForeignKey("FoodOrderTypeId");
 
@@ -548,15 +548,15 @@ namespace RestaurantManagement.Migrations
                     b.Navigation("FoodOrderTypeList");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderLineItem", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrderLineItem", b =>
                 {
-                    b.HasOne("Fiverr_Sample.FoodOrdering.Models.FoodOrder", "Order")
+                    b.HasOne("RestaurantManagement.FoodOrdering.Models.FoodOrder", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Fiverr_Sample.MasterData.Models.Product", "Product")
+                    b.HasOne("RestaurantManagement.MasterData.Models.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -618,32 +618,32 @@ namespace RestaurantManagement.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.Customer", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.Customer", b =>
                 {
                     b.Navigation("FoodOrders");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.DiningTable", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.DiningTable", b =>
                 {
                     b.Navigation("FoodOrder");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrder", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrder", b =>
                 {
                     b.Navigation("OrderProducts");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderStatus", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrderStatus", b =>
                 {
                     b.Navigation("FoodOrders");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.FoodOrdering.Models.FoodOrderType", b =>
+            modelBuilder.Entity("RestaurantManagement.FoodOrdering.Models.FoodOrderType", b =>
                 {
                     b.Navigation("FoodOrders");
                 });
 
-            modelBuilder.Entity("Fiverr_Sample.MasterData.Models.Product", b =>
+            modelBuilder.Entity("RestaurantManagement.MasterData.Models.Product", b =>
                 {
                     b.Navigation("OrderProducts");
                 });

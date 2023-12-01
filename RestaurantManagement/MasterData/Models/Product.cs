@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Fiverr_Sample.FoodOrdering.Models;
+using RestaurantManagement.FoodOrdering.Models;
 
-namespace Fiverr_Sample.MasterData.Models
+namespace RestaurantManagement.MasterData.Models
 {
     public class Product
     {

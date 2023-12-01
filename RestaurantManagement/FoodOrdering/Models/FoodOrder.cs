@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Fiverr_Sample.FoodOrdering.Models
+namespace RestaurantManagement.FoodOrdering.Models
 {
     public class FoodOrder
     {

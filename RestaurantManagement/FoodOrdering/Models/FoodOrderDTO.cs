@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
-using Fiverr_Sample.MasterData.Models;
+using RestaurantManagement.MasterData.Models;
 
-namespace Fiverr_Sample.FoodOrdering.Models
+namespace RestaurantManagement.FoodOrdering.Models
 {
     public class FoodOrderDTO
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Fiverr_Sample.FoodOrdering.Models
+namespace RestaurantManagement.FoodOrdering.Models
 {
     public enum FoodOrderStatusEnum
     {

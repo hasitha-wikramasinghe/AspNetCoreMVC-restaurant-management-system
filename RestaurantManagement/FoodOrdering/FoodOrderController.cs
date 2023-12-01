@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Fiverr_Sample.FoodOrdering.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.DataAccess;
+using RestaurantManagement.FoodOrdering.Models;
 
-namespace Fiverr_Sample.FoodOrdering
+namespace RestaurantManagement.FoodOrdering
 {
     public class FoodOrderController : Controller
     {
