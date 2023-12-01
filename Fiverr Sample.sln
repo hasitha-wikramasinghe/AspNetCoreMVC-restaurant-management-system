@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiverr Sample", "FiverrSample\Fiverr Sample.csproj", "{3AA5E8BF-4473-4BDA-BEFF-6F508C7EBC95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantManagement", "RestaurantManagement\RestaurantManagement.csproj", "{3AA5E8BF-4473-4BDA-BEFF-6F508C7EBC95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
