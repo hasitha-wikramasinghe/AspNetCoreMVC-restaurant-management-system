@@ -55,7 +55,7 @@
                         <td>@user.LastName</td>
                         <td>@user.NIC</td>
                         <td><a class="btn btn-info" href="@Url.Action("Update", new {Id = user.Id})"><i class="fa-solid fa-pen fa-fw"></i></a>
-                            <a class="btn btn-danger" href="@Url.Action("Delete", new {Id = user.Id})"><i class="fa-solid fa-trash-can fa-fw"></i></a></td>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')" href="@Url.Action("Delete", new {Id = user.Id})"><i class="fa-solid fa-trash-can fa-fw"></i></a></td>
                     </tr>
                 }
             </tbody>
@@ -88,8 +88,6 @@
 
 
 @section scripts{
-    <script src="~/js/user.js"></script>
-    <script src="~/js/user-management.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -102,109 +100,6 @@
             });//.buttons().container().appendTo('#userTbl_wrapper .col-md-6:eq(0)');
             //$('.dataTables_length').addClass('bs-select');
         })
-        // $(document).ready(function () {
-        //     var canUpdate = $('#inputCanUpdate').val();
-        //     var canDownload = $('#inputCanFileDownload').val();
-
-        //     let grid = null;
-
-        //     bindGrid();
-
-        //     function bindGrid() {
-        //         grid = $('#gridContainer').dxDataGrid({
-        //             dataSource: "user/All",
-        //             onContentReady: function () {
-        //                 $(".dx-header-row").addClass("grid-header");
-        //             },
-        //             allowColumnReordering: true,
-        //             allowColumnResizing: true,
-        //             columnAutoWidth: true,
-        //             //headerFilter: { visible: true },
-        //             sorting: {
-        //                 mode: "multiple"
-        //             },
-        //             columns: [
-        //                 {
-        //                     dataField: "firstName",
-        //                     //allowFiltering: false,
-        //                 },
-        //                 {
-        //                     dataField: "lastName",
-        //                     //allowFiltering: false,
-        //                 },
-        //                 {
-        //                     dataField: "email",
-        //                     allowFiltering: true,
-        //                 },
-        //                 {
-        //                     caption: "Actions",
-        //                     allowSorting: false,
-        //                     allowFiltering: false,
-        //                     cellTemplate: function (container, options) {
-        //                         if (options.value == null && canUpdate) {
-        //                             $("<div class='ml-2'/>").dxButton({
-        //                                 icon: "fa fa-edit fa-2xs",
-        //                                 type: "normal",
-        //                                 hint: "Edit",
-        //                                 elementAttr: {
-        //                                     class: "btn btn-2xs"
-        //                                 },
-        //                                 text: "",
-        //                                 onClick: function (e) {
-        //                                     window.location = "@Url.Action("updateuserpage", "user")/" + options.data.id
-        //                                 }
-        //                             }).appendTo(container);
-        //                         }
-
-        //                     }
-        //                 }
-
-
-
-        //             ],
-        //             //onRowPrepared: function (info) {
-        //             //    console.log(info);
-        //             //},
-        //             selection: {
-        //                 mode: "multiple",
-        //                 showCheckBoxesMode: "always" // selecting row only by clicking on the select checkbox
-        //             },
-        //             "export": {
-        //                 enabled: true,
-        //                 fileName: "Users",
-        //                 allowExportSelectedData: true
-        //             },
-        //             paging: {
-        //                 pageSize: 10
-        //             },
-        //             pager: {
-        //                 showPageSizeSelector: true,
-        //                 allowedPageSizes: [10, 20, 50],
-        //                 showInfo: true
-        //             },
-        //             groupPanel: {
-        //                 visible: true
-        //             },
-        //             searchPanel: {
-        //                 visible: false
-        //             },
-        //             filterRow: {
-        //                 visible: true
-        //             },
-        //             showBorders: true,
-        //             showRowLines: true,
-        //             wordWrapEnabled: true,
-        //             onCellPrepared: function (e) {
-        //                 if (e.rowType == "header") {
-        //                     e.cellElement.addClass("bg-dark text-white");
-        //                 }
-        //             },
-        //         }).dxDataGrid("instance");
-        //     }
-
-        // });
-
-
     </script>
 
 }

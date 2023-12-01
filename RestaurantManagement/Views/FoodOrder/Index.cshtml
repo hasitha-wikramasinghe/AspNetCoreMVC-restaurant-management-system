@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Users";
+﻿@model List<Fiverr_Sample.FoodOrdering.Models.FoodOrderDTO>
+@{
+    ViewData["Title"] = "Orders";
     Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
 }
 
@@ -13,7 +14,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h3 class="card-title">
-                    Content should goes here
+                    Manage Your @ViewData["Title"]
                 </h3>
             </div>
 
@@ -23,7 +24,7 @@
                         <div class="col-md-8">
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-block btn-primary" href="#" align="right" style="width:150px;"><i class="fa fa-user-plus" aria-hidden="true"></i> User</a>
+                            <a class="btn btn-block btn-primary" href="@Url.Action("Create")" align="right" style="width:150px;"><i class="fa-solid fa-cart-plus"></i> Order</a>
                         </div>
                     </div>
                 </div>
@@ -31,20 +32,38 @@
         </div>
 
         <br>
-
-
-
     </div>
 
 
-    @* <div class="card-body w-auto">
-        <div id="alertContainer" class="col-md-12">
-            @Html.Raw(TempData["Alert"])
-        </div>
+    <div class="card-body">
+        <table class="table" id="tblUsers">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Order Code</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var foodOrder in Model)
+                {
+                    <tr>
+                        <td>@foodOrder.OrderCodeString</td>
+                        <td>@foodOrder.CustomerName</td>
+                        <td>@foodOrder.FoodOrderStatusName</td>
+                        <td>@foodOrder.TotalPrice</td>
+                        <td>
+                            <a class="btn btn-info" href="@Url.Action("Update", new {Id = foodOrder.Id})"><i class="fa-solid fa-pen fa-fw"></i></a>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')" href="@Url.Action("Delete", new {Id = foodOrder.Id})"><i class="fa-solid fa-trash-can fa-fw"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-        <div id="gridContainer">
-        </div>
-    </div> *@
+    </div>
 
 </div>
 
@@ -58,9 +77,9 @@
     }
 
     /*.fa {
-            height: 20px;
-            margin-top: -5px;
-        }*/
+                height: 20px;
+                margin-top: -5px;
+            }*/
 
     .fa-edit {
         height: 20px;
@@ -71,6 +90,21 @@
 
 
 @section scripts{
-    
+
+    <script>
+        $(document).ready(function () {
+            $('#tblUsers').DataTable({
+                "ordering": false,
+                "scrollX": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                //"buttons": ["excel", "pdf"],
+            });//.buttons().container().appendTo('#userTbl_wrapper .col-md-6:eq(0)');
+            //$('.dataTables_length').addClass('bs-select');
+        })
+
+
+    </script>
+
 }
 

@@ -1,0 +1,31 @@
+﻿<script>
+
+    $(document).ready(function () {
+        console.log('Working');
+
+    })
+
+    $('#btnNewLineItemAppendToTable').click(function () {
+        console.log('Function hitting...');
+        var productId = $('#selectProduct').val();
+        var productName = $('#selectProduct option:selected').html();
+        var productCode = $('#selectProductCode option:selected').html();
+        var quantity = $('#txtQuantity').val();
+        var unitPrice = $('#selectProductPrice option:selected').html();
+        var subPrice = unitPrice * quantity;
+
+        $('#tblLineItems tbody').append('<tr><td><input asp-for="" type="text" class="form-control" placeholder="Product Code" value="' +productCode+ '" disabled /></td><td><input asp-for="" type="text" class="form-control" placeholder="Product Name" value="' +productName+ '" disabled/></td><td><input asp-for="" type="text" class="form-control" placeholder="Quantity" value="' +quantity+ '" disabled/></td><td><input asp-for="" type="text" class="form-control" placeholder="Unit Price" value="' +unitPrice+ '" disabled/></td><td><input asp-for="" type="text" class="form-control" placeholder="Total Price" value="' +subPrice+ '" disabled/></td><td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash-can fa-fw"></i></a></td></tr>');
+    });
+
+    $('#selectProduct').change(function () {
+        var productId = $('#selectProduct').val();
+        $('#selectProductCode').val(productId);
+        $('#selectProductPrice').val(productId);
+    })
+
+    $('#selectProductCode').change(function () {
+        var productId = $('#selectProductCode').val();
+        $('#selectProduct').val(productId);
+        $('#selectProductPrice').val(productId);
+    })
+</script>

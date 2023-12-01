@@ -1,0 +1,58 @@
+﻿@model Fiverr_Sample.FoodOrdering.Models.FoodOrderDTO
+
+<div class="modal fade" id="NewLineItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Line Item</h5>
+                    <button type="button" class="btn btn-xs btn-danger" data-bs-dismiss="modal">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="col-form-label-sm">Product Code</label>
+                            <select id="selectProductCode" class="form-control">
+                                <option value="0">Product Code</option>
+                            </select>
+                            <span class="text-danger" id="lblRoleAlreadyExistsError" style="display: none;">For any validations this can be used.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="col-form-label-sm">Product Name</label>
+                            <select id="selectProduct" class="form-control">
+                                <option value="0">- Please Select -</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-md-12">
+                            <label class="col-form-label-sm">Product Price</label>
+                            <select id="selectProductPrice" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="col-form-label-sm">Quantity</label>
+                            <input id="txtQuantity" type="text" class="form-control" placeholder="Quantity" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="button" id="btnNewLineItemAppendToTable" class="btn btn-primary" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="_LineItemScripts" />

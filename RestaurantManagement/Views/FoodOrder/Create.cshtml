@@ -1,0 +1,244 @@
+﻿@model Fiverr_Sample.FoodOrdering.Models.FoodOrderDTO
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/Nifty/_Layout.cshtml";
+}
+
+<br />
+
+<link rel="stylesheet" href="~/css/styles.css" type="text/css" />
+
+<div id="placeHolder"></div>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="card-title">
+                    New @ViewData["Title"]
+                </h3>
+            </div>
+            <div class="col-md-6" style="float: right;">
+                @* If need can use this section as well *@
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create" asp-controller="FoodOrder" method="post">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>General</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="FoodOrderTypeId" class="col-form-label-sm"></label>
+                            <select id="selectOrderType" class="form-control">
+                                <option value="0">- Please Select -</option>
+                                    @if (Model.FoodOrderTypes != null)
+                                    {
+                                        @foreach (var orderType in Model.FoodOrderTypes)
+                                        {
+                                            <option value="@orderType.Id">@orderType.OrderTypeName</option>
+                                        }
+                                    }
+                                    
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label id="lblDiningTable" asp-for="DiningTableId" class="col-form-label-sm" style="display: none;"></label>
+                            <select id="selectDiningTable" class="form-control" style="display: none;">
+                                <option value="0">- Please Select -</option>
+                                @if (Model.DiningTables is not null)
+                                @foreach (var diningTable in Model.DiningTables)
+                                {
+                                    <option value="@diningTable.Id">@diningTable.TableName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="FoodOrderDate" class="col-form-label-sm"></label>
+                            <input id="_dm-mcDatepicker-inline" type="text" class="form-control" placeholder="Order Date" asp-for="FoodOrderDate">
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="FoodOrderTime" class="col-form-label-sm"></label>
+                            <input id="_dm-mdDateTimePicker-showTime-portrait" type="text" class="form-control" placeholder="Input time" asp-for="FoodOrderTime">
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="OrderCodeString" class="col-form-label-sm"></label>
+                            <input id="txtOrderId" disabled asp-for="Id" type="text" class="form-control" placeholder="Order Id" />
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Line Items</h5>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-2">
+                            <a class="btn btn-primary" id="btnAddLineItem" data-target="#NewLineItem" data-url="@Url.Action("CreateNewLineItem", "FoodOrder")" align="right" style="width:150px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Item</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table col-form-label-sm" id="tblLineItems">
+                                <thead class="thead-dark">
+                                    <tr class="">
+                                        <th>Product Code</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @* <tr>
+                                        <td>P00841</td>
+                                        <td>Chicken Biriyani</td>
+                                        <td>3</td>
+                                        <td>$15</td>
+                                        <td>$45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P00268</td>
+                                        <td>Chicken Bucket</td>
+                                        <td>5</td>
+                                        <td>$10</td>
+                                        <td>$50</td>
+                                    </tr> *@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Customer Details</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="CustomerName" class="col-form-label-sm"></label>
+                            <input id="txtLastName" asp-for="CustomerName" type="text" class="form-control" placeholder="Customer Name" />
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="CustomerEmail" class="col-form-label-sm"></label>
+                            <input id="txtEmail" asp-for="CustomerEmail" type="text" class="form-control" placeholder="Customer Email" />
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="CustomerPhoneNumber" class="col-form-label-sm"></label>
+                            <input id="txtOrderId" asp-for="CustomerPhoneNumber" type="text" class="form-control" placeholder="Customer Phone Number" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label asp-for="CreatedBy" class="col-form-label-sm"></label>
+                            <input id="txtCreatedBy" disabled asp-for="CreatedBy" type="text" class="form-control" placeholder="Created By" />
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="CreatedOn" class="col-form-label-sm"></label>
+                            <input id="txtCreatedOn" disabled asp-for="CreatedOn" type="text" class="form-control" placeholder="Created On" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary" asp-action="Create" asp-controller="FoodOrder">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+</div>
+
+<style>
+    div.container {
+        max-width: 1200px
+    }
+
+    .dx-button {
+        height: 20px;
+    }
+
+    .fa-edit {
+        height: 20px;
+        width: 5px;
+        margin-top: -7px;
+    }
+</style>
+
+
+@section scripts{
+    <script>
+        $('#selectOrderType').change(function () {
+            var selectedOrderType = $('#selectOrderType').val();
+            
+            if (selectedOrderType == 1) {
+                $('#lblDiningTable').show();
+                $('#selectDiningTable').show();
+            } else {
+                $('#selectDiningTable').val = 0;
+                $('#lblDiningTable').hide();
+                $('#selectDiningTable').hide();
+            }
+        });
+
+        // If needs to add new rows and use rows to add new items, this can be used to append new rows to the table
+        // $('#btnAddLineItem').on('click', function () {
+        //     $('#tblLineItems tbody').append('<tr><td><input asp-for="" type="text" class="form-control" placeholder="Product Code" disabled /></td><td><input asp-for="" type="text" class="form-control" placeholder="Product Name" /></td><td><input asp-for="" type="text" class="form-control" placeholder="Quantity" /></td><td><input asp-for="" type="text" class="form-control" placeholder="Unit Price" /></td><td><input asp-for="" type="text" class="form-control" placeholder="Total Price" /></td><td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash-can fa-fw"></i></a></td></tr>');
+        // })
+
+        $('#btnAddLineItem').click(function(event) {
+            var url = $(this).data('url');
+            console.log(url);
+            $.get(url).done(function (data) {
+                $('#NewLineItem').remove(); // Remove any existing modal
+                $('body').append(data);     // Append the new modal
+                $('#NewLineItem').modal('show');
+            })
+            loadProducts();
+        })
+
+        function loadProducts() { 
+            $.ajax({
+                type: 'GET',
+                url: '../Product/GetAllProducts',
+                success: function (response) {
+
+                    var htmlProductName = '<option value="0" selected>- Please Select -</option>';
+                    var htmlProductCode = '<option value="0" selected>- Please Select -</option>';
+                    var htmlProductPrice = '<option value="0" selected>- Please Select -</option>';
+
+                    $.each(response, function (index, value) {
+                        htmlProductName += '<option value="' + value.id + '">' + value.productName + '</option>';
+                        htmlProductCode += '<option value="' + value.id + '">' + value.productCode + '</option>';
+                        htmlProductPrice += '<option value="' + value.id + '">' + value.price + '</option>';
+                    })
+                    $('#selectProduct').html(htmlProductName);
+                    $('#selectProductCode').html(htmlProductCode);
+                    $('#selectProductPrice').html(htmlProductPrice);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        }
+
+    </script>
+}
+

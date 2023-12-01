@@ -22,9 +22,14 @@ namespace RestaurantManagement.Authentication
             _signinManager = signinManager;
             _context = context;
         }
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var users = await _context.ApplicationUsers.Where(user => user.IsDeleted == false || user.IsDeleted == null).ToListAsync(); 
+            var users = await _context.ApplicationUser
+                .Where(user => user.IsDeleted == false || user.IsDeleted == null)
+                .OrderBy(user => user.FirstName)
+                .ToListAsync(); 
             return View(users);
         }
 
@@ -42,11 +47,7 @@ namespace RestaurantManagement.Authentication
             applicationUser.EmailConfirmed = true;
             applicationUser.IsActive = true;
             applicationUser.CreatedOn = DateTime.UtcNow;
-
-            if (User.Identity.IsAuthenticated)
-            {
-                applicationUser.CreatedBy = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            }
+            applicationUser.CreatedBy = User.Identity?.Name;
 
             var result = await _userManager.CreateAsync(applicationUser, "Hotelio@123");
 
@@ -70,7 +71,7 @@ namespace RestaurantManagement.Authentication
         {
             var user = await _userManager.FindByIdAsync(id);
             user.IsDeleted = true;
-            _context.ApplicationUsers.Update(user);
+            _context.ApplicationUser.Update(user);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
