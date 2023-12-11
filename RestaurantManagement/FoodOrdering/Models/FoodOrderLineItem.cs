@@ -18,6 +18,10 @@ namespace RestaurantManagement.FoodOrdering.Models
             {
                 return Product is not null ? Product.Price * Quantity : decimal.Zero;
             }
+            set
+            {
+                SubPrice = value;
+            }
         }
         public int StatusId { get; set; }
 
